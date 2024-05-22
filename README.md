@@ -12,3 +12,6 @@ You have to be careful because compile.php uses a file.cpp into a folder with th
 
 # Example "/temp/temp.cpp" so now you can do something like this:
 console/contest_name/number_of_contest$ php compile.php temp
+
+# Add compilation flags:
+Into compile.php you can add your own flags compilation in case you need it.
