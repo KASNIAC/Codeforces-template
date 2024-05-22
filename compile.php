@@ -9,19 +9,29 @@ if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') { // Windows
    $MKDIR = "mkdir";
    $COPY = "copy";
    $CMP = "fc";
+   $REMOVE = "del";
 } else { // Linux
    $OS = "LINUX";
    $MKDIR = "mkdir";
    $COPY = "cp";
    $CMP = "diff";
+   $REMOVE = "rm";
 }
 
 $name = $argv[1];
 
 if($OS == "WINDOWS") {
+   if(file_exists("$name/$name.exe")){
+      shell_exec("$REMOVE \"$name\\$name.exe\""); // Deleting last .exe
+   }
+
    $output = shell_exec("g++ \"$name/$name.cpp\" -O3 -o \"$name/$name.exe\"");
    $route = "$name/$name.exe";
 } else if($OS == "LINUX"){
+   if(file_exists("$name/$name.exe")){
+      shell_exec("$REMOVE \"$name/$name.exe\""); // Deleting last .exe
+   }
+   
    $output = shell_exec("g++ \"$name/$name.cpp\" -O3 -o \"$name/$name\"");
    $route = "$name/$name";
 }
